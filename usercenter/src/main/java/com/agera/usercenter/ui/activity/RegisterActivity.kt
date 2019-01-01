@@ -14,15 +14,20 @@ class RegisterActivity : BaseMvpActivity<RegisterPresenter>(), RegisterView {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_register)
 
-        mPresenter = RegisterPresenter()
         mPresenter.mView = this
 
         mBtnRegister.setOnClickListener {
-            mPresenter.register("", "")
+            mPresenter.register(mEtMobile.text.toString(), mEtVerifyCode.text.toString(), mEtPassword.text.toString())
         }
     }
 
     override fun onRegistResult(success: Boolean) {
         toast("${if (success) "success" else "failed"}")
     }
+
+    override fun injection(){
+        super.injection()
+
+    }
+
 }
